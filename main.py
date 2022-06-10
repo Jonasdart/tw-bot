@@ -1,15 +1,14 @@
+from config import ACCESS_TOKEN, COMMANDS_PREFIX, CHANNELS_NAME
 from twitchio.ext import commands
 from utils import Poll
 import json
-
-ACCESS_TOKEN = '6it1wdo2f7l7t46rglexcd367tfmuf'
 
 
 class Bot(commands.Bot):
 
     def __init__(self):
         # Initialise our Bot with our access token, prefix and a list of channels to join on boot...
-        super().__init__(token=ACCESS_TOKEN, prefix='!', initial_channels=['unvett'])
+        super().__init__(token=ACCESS_TOKEN, prefix=COMMANDS_PREFIX, initial_channels=CHANNELS_NAME)
         self.actual_poll = None
 
     async def create_poll(self, question):
