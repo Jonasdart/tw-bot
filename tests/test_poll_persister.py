@@ -17,8 +17,14 @@ class Test(unittest.TestCase):
 
     def test_3_voting(self):
         poll = utils.Poll("Teste")
-        poll.vote_no()
-        poll.vote_yes()
+        poll.vote_no("username_teste")
+        poll.vote_yes("username_teste2")
         assert poll.votes == {"Yes": 1, "No": 1}
+
+    def test_4_voting_again(self):
+        poll = utils.Poll("Teste")
+        poll.vote_yes("username_teste")
+        poll.vote_no("username_teste")
+        assert poll.votes == {"Yes": 1, "No": 0}
 
 

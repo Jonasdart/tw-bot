@@ -12,26 +12,32 @@ class Poll:
         }
         self.isAlive = True
         self.__persiste_polls()
+        self.voters = []
 
     def allow_by_status(function):
-        def wrapper(self):
+        def wrapper(self, *args):
             if not self.isAlive:
                 raise PermissionError("This poll is now closed.")
 
-            return function(self)
+            return function(self, *args)
         return wrapper
 
     def __persiste_polls(self):
         polls.append(self.__dict__)
 
     @allow_by_status
-    def vote_yes(self):
-        self.votes["Yes"] += 1
+    def vote_yes(self, username):
+        if username not in self.voters:
+            self.votes["Yes"] += 1
+            self.voters.append(username)
 
     @allow_by_status
-    def vote_no(self):
-        self.votes["No"] += 1
+    def vote_no(self, username):
+        if username not in self.voters:
+            self.votes["No"] += 1
+            self.voters.append(username)
 
+    @allow_by_status
     def finish(self) -> dict:
         self.isAlive = False
 
