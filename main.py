@@ -1,6 +1,6 @@
 from config import ACCESS_TOKEN, COMMANDS_PREFIX, CHANNELS_NAME
 from twitchio.ext import commands
-from utils import Poll
+from utils.polls import Poll
 import json
 
 

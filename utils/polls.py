@@ -1,7 +1,7 @@
 import uuid
 from .db import get_db
 
-__polls_db = get_db()
+_polls_db = get_db()
 
 
 class Poll:
@@ -23,7 +23,7 @@ class Poll:
         return wrapper
 
     def __persiste_polls(self):
-        __polls_db.insert(self.__dict__)
+        _polls_db.insert(self.__dict__)
 
     @allow_by_status
     def vote_yes(self, username):
