@@ -1,6 +1,6 @@
 version: "3"
 services:
-  web:
+  twbot:
     build: .
   environment:
     - ACCESS_TOKEN='TWITCH_ACCESS_TOKEN'
