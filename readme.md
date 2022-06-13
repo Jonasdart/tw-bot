@@ -2,6 +2,8 @@
 
 Using [TwitchIO](https://github.com/TwitchIO/TwitchIO) to listening messages and generate commands on twitchTV stream chats. A great way to realtime interation!
 
+I recommend [Tw Token Generator](https://twitchtokengenerator.com/) for easy generate your Twitch Token
+
 ## To Run
 
     Configure envs on compose.yml
