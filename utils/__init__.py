@@ -2,7 +2,7 @@ from .db import get_db, Query
 
 _polls_db = get_db()
 
-def _persiste_polls(function):
+def _persist_polls(function):
     def wrapper(self, *args):
         function_return = function(self, *args)
 

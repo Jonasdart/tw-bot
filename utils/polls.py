@@ -1,8 +1,8 @@
 import uuid
-from . import _persiste_polls
+from . import _persist_polls
 
 class Poll:
-    @_persiste_polls
+    @_persist_polls
     def __init__(self, question):
         self.poll_id = uuid.uuid4().hex
         self.question = question
@@ -19,21 +19,21 @@ class Poll:
 
         return wrapper
 
-    @_persiste_polls
+    @_persist_polls
     @allow_by_status
     def vote_yes(self, username):
         if username not in self.voters:
             self.votes["Yes"] += 1
             self.voters.append(username)
 
-    @_persiste_polls
+    @_persist_polls
     @allow_by_status
     def vote_no(self, username):
         if username not in self.voters:
             self.votes["No"] += 1
             self.voters.append(username)
 
-    @_persiste_polls
+    @_persist_polls
     @allow_by_status
     def finish(self) -> dict:
         self.isAlive = False
