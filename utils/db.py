@@ -1,6 +1,6 @@
 from tinydb import TinyDB, Query
 
-__db = TinyDB("persist.json")
+__db = TinyDB("persistence.json")
 
 
 def get_db():
