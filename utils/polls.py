@@ -1,16 +1,13 @@
 import uuid
-from .db import get_db
-
-_polls_db = get_db()
-
+from . import _persiste_polls
 
 class Poll:
+    @_persiste_polls
     def __init__(self, question):
         self.poll_id = uuid.uuid4().hex
         self.question = question
         self.votes = {"Yes": 0, "No": 0}
         self.isAlive = True
-        self.__persiste_polls()
         self.voters = []
 
     def allow_by_status(function):
@@ -22,21 +19,21 @@ class Poll:
 
         return wrapper
 
-    def __persiste_polls(self):
-        _polls_db.insert(self.__dict__)
-
+    @_persiste_polls
     @allow_by_status
     def vote_yes(self, username):
         if username not in self.voters:
             self.votes["Yes"] += 1
             self.voters.append(username)
 
+    @_persiste_polls
     @allow_by_status
     def vote_no(self, username):
         if username not in self.voters:
             self.votes["No"] += 1
             self.voters.append(username)
 
+    @_persiste_polls
     @allow_by_status
     def finish(self) -> dict:
         self.isAlive = False
